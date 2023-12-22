@@ -1,10 +1,10 @@
 'use strict';
-//alert, confirm, prompt
+
 let randNum;
 let userNum;
 let answer;
 let answer1;
-//function getUserNumber() {
+
     
    
 function getRandomNumber() {
@@ -17,11 +17,12 @@ function getRandomNumber() {
       function check() {
         if (userNum > randNum) {
             answer = alert('Загадайте число меньше')
-             return check1(); 
-        } else if (userNum < randNum) {
+             return check1() };
+
+        if (userNum < randNum) {
             answer = alert('Загадайте число больше')
-            return check1()  
-        } else if (userNum === randNum) {
+            return check1() };
+        if (userNum === randNum) {
             answer = alert('Поздравляю, Вы угадали!!!')
             return check1()  
         } else 
@@ -45,5 +46,3 @@ function getRandomNumber() {
 getRandomNumber()
 
 
-    
-// }
