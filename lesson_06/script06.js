@@ -1,11 +1,14 @@
 'use strict';
-
+//Определение переменных
+//Для случайного числа
 let randNum;
+//Для числа пользователя
 let userNum;
-let answer;
-let answer1;
 
-    
+
+// Определение функций
+
+// Задаю функцию для генерации нового случайного числа и запроса числа от пользователя 
    
 function getRandomNumber() {
       randNum = Math.floor(Math.random() * 100);
@@ -13,24 +16,27 @@ function getRandomNumber() {
       userNum = +prompt('Угадай число от 1 до 100');
       
       console.log(userNum);
-
+// Задаю функцию (ЗАМЫКАНИЕ с getRandomNumber() ) для сравнения двух переменных let randNum и let userNum
       function check() {
+        console.dir(check)
         if (userNum > randNum) {
-            answer = alert('Загадайте число меньше')
+            alert('Загадайте число меньше')
              return check1() };
 
         if (userNum < randNum) {
-            answer = alert('Загадайте число больше')
-            return check1() };
+            alert('Загадайте число больше')
+            return check() };
         if (userNum === randNum) {
-            answer = alert('Поздравляю, Вы угадали!!!')
+            alert('Поздравляю, Вы угадали!!!')
             return check1()  
         } else 
         {alert('Введите число!')
           return check1();
+         
       }
-
+      //Задаю функцию - ЗАМЫКАНИЕ check() для выбора вариантов (через окно ДА/НЕТ) - начать заново (запуск getRandomNumber()) или нет. Если нет - появляется сообщение - ИГРА ОКОНЧЕНА
       function check1() {
+        console.dir(check1)
          if(!confirm('Продолжим?')) {
           alert('ИГРА ОКОНЧЕНА!');
          }else{
