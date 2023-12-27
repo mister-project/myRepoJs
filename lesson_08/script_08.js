@@ -4,7 +4,7 @@
 
 const appData = {
     title: '',
-    screens: '',
+    screens: [],
     screenPrice: 0,
     adaptive: true,
     rollback: 15,
@@ -21,9 +21,9 @@ const appData = {
     rollbackMessage: 0,
     start: function () {
         appData.asking()
-        appData.getallServicePrices()
-        appData.getFullPrice();
-        appData.getServicePercentPrices();
+        appData.addPrices()
+        appData.getFullPrice()
+        appData.getServicePercentPrices()
         appData.getTitle()
         appData.getRollbackMessage(appData.fullPrice)
        
@@ -37,51 +37,64 @@ const appData = {
         },
 
     asking: function() {
-        let price = 0;
+        
+    
         appData.title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
-        appData.screens = prompt('Какие типы экранов нужно разработать? (через запятую, пожалуйста)', "Простые, сложные");
+        
+
+        // изменения ур. 8 фОРМИРУЕМ новые циклы, массивы, обьекты(ниже)
+        for (let i = 0; i < 2; i++) {
+            let name = prompt('Какие типы экранов нужно разработать?' );
+            let price = 0;
+
+            do {
+                price = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim() //убрал + как у Саши
+            } while (!appData.isNumber(price));
+
+            appData.screens.push({ id: i, name: name, price: price })
+        }
+
        
-        do {appData.screenPrice = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim()
-        } while (!appData.isNumber(appData.screenPrice));
-//Начало цикла for
+        
+
+        //ур8. новые циклы конец
+
+        //Начало цикла for
         for (let i = 0; i < 2; i++) {
             let name = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')    
-            
+            let price = 0;            
              
             do {
             
             price = prompt('Сколько это будет стоить (руб.)?', 4500);   
-            } while (!appData.isNumber(price)) {
-               // console.log(sum);  
+            } while (!appData.isNumber(price)) 
+              
                
                appData.services[name] = +price
-            }       
-            
+            }          
           
-           
+                appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');        
+    
+},
+            addPrices: function() {
+            for (let screen of appData.screens) {
+            appData.screenPrice += +screen.price
+            }
+             //метод - цикл для ввода и валидации доп. услуг
+            for(let key in appData.services){
+            appData.allServicePrices += appData.services[key]
         }
-       
-           
-        appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');
-        
     },
+
+    
 //В названии проекта удаление пробелов + отделение первой буквы, превращение в заглавную и присоединении остальной части названия проекта
     getTitle: function() {
         appData.title = ((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
         
       },
    
-    //метод - цикл для ввода и валидации доп. услуг 
-    getallServicePrices: function() {
-             
-        for(let key in appData.services){
-            appData.allServicePrices += appData.services[key]
-            //вывод в консоль содержания обьекта getallServicePrices
-           // console.log("Ключ: " + key + " значение: " + appData.services[key])
-        }          
-                
-           
-        },
+    
+   
       //метод для сложения итоговой стоимости (без отката)
       getFullPrice: function() {
         appData.fullPrice = appData.screenPrice + appData.allServicePrices;
@@ -114,9 +127,14 @@ const appData = {
         for (const key in appData) {
           //вывод в консоль содержания обьека appData
             //console.log("Ключ: " + key + " значение: " + appData[key]);
+
         }
+        console.log(appData.fullPrice);
+        console.log(appData.servicePercentPrice);
+        console.log(appData.screens);
+
       },
-    
+     
       // --Блок функционала--
      
     };
@@ -132,8 +150,7 @@ appData.start();
 
 //блок вывода(мусор)
 
-console.log(appData.fullPrice);
-console.log(appData.servicePercentPrice);
+
 
 
 
