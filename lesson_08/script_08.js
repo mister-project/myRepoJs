@@ -27,28 +27,30 @@ const appData = {
         appData.getTitle()
         appData.getRollbackMessage(appData.fullPrice)
        
-        appData.logger()                   
+        appData.logger() 
+                         
       
       },
-         //isNumber()) функция проверки на чило
-    isNumber: function(num) {
-        return !isNaN(parseFloat(num) && isFinite(num))
-        
-        },
+         
 
     asking: function() {
         
-    
+        do {
         appData.title = prompt('Как назывется ваш проект?', "Калькулятор верстки");
-        
+        } while (appData.isNumber(appData.title));
+        // do {
+        //     price = prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim() //убрал + как у Саши
+        // } while (isNumber(price));
 
         // изменения ур. 8 фОРМИРУЕМ новые циклы, массивы, обьекты(ниже)
         for (let i = 0; i < 2; i++) {
-            let name = prompt('Какие типы экранов нужно разработать?' );
+            do {
+            name = prompt('Какие типы экранов нужно разработать?' )
+            }  while (appData.isNumber(name));
             let price = 0;
 
             do {
-                price = +prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim() //убрал + как у Саши
+                price = prompt('Сколько будет стоить данная работа (в руб.)?', 31000).trim() //убрал + как у Саши
             } while (!appData.isNumber(price));
 
             appData.screens.push({ id: i, name: name, price: price })
@@ -61,7 +63,9 @@ const appData = {
 
         //Начало цикла for
         for (let i = 0; i < 2; i++) {
-            let name = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')    
+            do {
+            name = prompt('Какой дополнительный тип услуги нужен?', 'услуга1')  
+        }  while (appData.isNumber(name));  
             let price = 0;            
              
             do {
@@ -70,16 +74,26 @@ const appData = {
             } while (!appData.isNumber(price)) 
               
                
-               appData.services[name] = +price
+               appData.services[name[i]] = +price
             }          
           
                 appData.adaptive = confirm('Нужен ли адаптив на сайте? (выберите нужную кнопку)');        
     
 },
-            addPrices: function() {
-            for (let screen of appData.screens) {
-            appData.screenPrice += +screen.price
-            }
+
+
+//isNumber()) функция проверки на чило
+isNumber: function(num) {
+    return !isNaN(parseFloat(num) && isFinite(num))
+    
+    },
+        addPrices: function() {
+           
+            //Считаем суммарную стоимость экранов в массиве screens через reduce        
+           appData.screenPrice = appData.screens.reduce(function(sum, item) {      
+            return sum + (+item.price)   
+          }, 0)
+          
              //метод - цикл для ввода и валидации доп. услуг
             for(let key in appData.services){
             appData.allServicePrices += appData.services[key]
@@ -89,7 +103,7 @@ const appData = {
     
 //В названии проекта удаление пробелов + отделение первой буквы, превращение в заглавную и присоединении остальной части названия проекта
     getTitle: function() {
-        appData.title = ((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
+        appData.title = +((appData.title.trimStart()).toUpperCase()).slice(0,1) + appData.title.trimStart().toLowerCase().substring(1)
         
       },
    
@@ -124,17 +138,23 @@ const appData = {
     },  
 
     logger: function () {
+        //вывод состава метода appData
         for (const key in appData) {
-          //вывод в консоль содержания обьека appData
-            //console.log("Ключ: " + key + " значение: " + appData[key]);
-
+          
         }
+
+        
+        
+
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
-        console.log(appData.screens);
+        console.log(appData.screens); 
+         //вывод в консоль общей стоимости экранов       
+        console.log('Экраны_сумма: ' + appData.screenPrice);
 
       },
      
+      
       // --Блок функционала--
      
     };
@@ -144,14 +164,12 @@ const appData = {
   
 
 // функционал
-
-appData.start();      
+appData.start(); 
 
 
 //блок вывода(мусор)
+// const result = screens.reduce(function(sum, item)) {
+//     return sum + item.price
+// }, 0)
 
-
-
-
-
-
+// console.log(result);
