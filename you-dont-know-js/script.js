@@ -2,7 +2,7 @@ const lists = document.querySelectorAll('.books') //вывод списков
 const books = document.querySelectorAll('.book') //вывод книг одним списком элементов
 const img = document.querySelector('body') // картинка заднего фона
 const titleBooks = document.querySelectorAll('h2') //вывод заголовков книг в список элементов
-const advRremove = document.querySelector('.adv')// вывод класса о рекламе
+const advRemove = document.querySelector('.adv')// вывод класса о рекламе
 
 const uls = document.querySelectorAll('ul'); //переменная для хранения списка содержаний
 const lis = document.querySelectorAll('li');//переменная для списка пунктов всех содержаний
@@ -25,7 +25,7 @@ img.style.backgroundImage = "url(./image/you-dont-know-js.jpg)"
 titleBooks[4].innerHTML = '<a href="https://github.com/azat-io/you-dont-know-js-ru/blob/master/this%20%26%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes" target="_blank">Книга 3. this и Прототипы Объектов</a>'
 
 // п. 4 удаление рекламы
-advRremove.classList.remove("adv");
+advRemove.classList.remove("adv");
 
 //п. 5 редактирование содержания 2-й книги
 uls[0].prepend(lis[8])
@@ -50,7 +50,7 @@ uls[5].append(lis[51])
 uls[5].append(lis[54])
 uls[5].append(lis[56])
 
-//
+//п. 6 вставка новой главы в книгу 6 
 
 newElement.textContent = 'Глава 8: За пределами ES6'
 uls[2].append(newElement)
@@ -61,7 +61,7 @@ console.log(lists)
 console.log(books)
 console.log(img)
 console.log(titleBooks)
-console.log(advRremove)
+console.log(advRemove)
 console.log(uls)
 console.log(lis)
 console.log(newElement)
