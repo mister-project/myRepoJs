@@ -50,7 +50,11 @@ uls[5].append(lis[51])
 uls[5].append(lis[54])
 uls[5].append(lis[56])
 
+//
 
+newElement.textContent = 'Глава 8: За пределами ES6'
+uls[2].append(newElement)
+uls[2].append(lis[26])
 
 //мусор
 console.log(lists)
