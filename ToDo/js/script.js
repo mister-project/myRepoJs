@@ -51,10 +51,12 @@ todoControl.addEventListener('submit', function (event) {
         completed: false
 
     }
-
-    toDoData.push(newToDo)
-    headerInput.value = ''
-
+    if (headerInput.value === '') {
+        alert('Неудача! Введено пустое значение')
+    } else {
+        toDoData.push(newToDo)
+        headerInput.value = ''
+    }
     render()
 
 })
