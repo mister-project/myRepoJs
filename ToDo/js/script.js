@@ -33,6 +33,11 @@ const render = function () {
             todoList.append(li)
 
         }
+        console.log(todoList.innerHTML)
+        li.querySelector('.todo-complete').addEventListener('click', function () {
+            item.completed = !item.completed
+            render()
+        })
 
     })
 }
@@ -49,6 +54,7 @@ todoControl.addEventListener('submit', function (event) {
 
     toDoData.push(newToDo)
     headerInput.value = ''
+
     render()
 
 })
