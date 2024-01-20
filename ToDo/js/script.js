@@ -11,6 +11,10 @@ const todoCompleted = document.querySelector('.todo-completed'); //Первый 
 
 const toDoData = []
 
+console.log(typeof (toDoData))
+//console.log(toDoData.li)
+
+
 //функция для отрисовки наших to-do-шек
 const render = function () {
     todoList.innerHTML = ''
@@ -18,6 +22,7 @@ const render = function () {
     toDoData.forEach(function (item) {
         //формируем новые пункты с нужной разметкой
         const li = document.createElement('li')
+
         li.classList.add('todo-item')
 
         li.innerHTML = '<span class="text-todo">' + item.text + '</span>' +
@@ -26,6 +31,8 @@ const render = function () {
             '<button class="todo-complete"></button>' +
             '</div>'
         //сортируем дела по спискам условия в if
+        console.log(toDoData);
+
         if (item.completed) {
             // через append Публикуем пункты, попавшие в опрос forEach в разметку (будут видны в браузере)
             todoCompleted.append(li)
@@ -38,19 +45,27 @@ const render = function () {
             item.completed = !item.completed
             render()
         })
+        li.querySelector('.todo-remove').addEventListener('click', function () {
+            const itemIndex = toDoData.indexOf(item);
+            toDoData.splice(itemIndex, 1);
+            render();
+        })
 
     })
+
 }
 
 
 todoControl.addEventListener('submit', function (event) {
-    event.preventDefault()
+    event.preventDefault() // Отменяем перезагрузку страницы при САБМИТЕ формы
 
     const newToDo = {
         text: headerInput.value,
         completed: false
 
     }
+    // console.log(newToDo);
+
     if (headerInput.value === '') {
         alert('Неудача! Введено пустое значение')
     } else {
