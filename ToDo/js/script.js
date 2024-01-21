@@ -1,31 +1,23 @@
-//todo-control
-//header-input
-//todo-list
-//todo-completed
+//todo-control - 
+//header-input - поле ввода задач
+//todo-list - лист невыполненных задач
+//todo-completed - лист выполненных задач
 const todoControl = document.querySelector('.todo-control'); //Получаем форму
 const headerInput = document.querySelector('.header-input'); //Поле ввода в форму
 const todoList = document.querySelector('.todo-list'); //Первый элемент из списка невыполненных задач
 const todoCompleted = document.querySelector('.todo-completed'); //Первый элемент из списка выполненных задач
-//let localStorageGet = localStorage.getItem("todoList1")
+
 let localStorageGet = localStorage.getItem("todoList1") ? JSON.parse(localStorage.getItem("todoList1")) : [];
-console.log(localStorageGet)
+console.log(localStorageGet) //Переменная, содержащая массив задач из localStorage 
 
-const toDoData = localStorageGet
-
-// Достасть методом getItem, поместить в переменную, переменную с уже извлеченным массивом закинуть в функцию, которая его переберет и отрендерит)
+const toDoData = localStorageGet // Подгрузка списка задач в массив для обработки
 
 
 console.log(typeof (toDoData))
 console.log((toDoData))
 
 
-//console.log(typeof (localStorageGet))
-
-//функция перебора массива из LocalStorage
-
-
-
-//функция для отрисовки наших to-do-шек
+//функция для отрисовки наших to-do-шек -, перебираем массив, навешиваем HTML верстку на каждый "li" и распределяем по завершенным и нет + публикация на странице
 const render = function () {
     todoList.innerHTML = ''
     todoCompleted.innerHTML = ''
@@ -41,7 +33,7 @@ const render = function () {
             '<button class="todo-complete"></button>' +
             '</div>'
         //сортируем дела по спискам условия в if
-        console.log(toDoData);
+
 
         if (item.completed) {
             // через append Публикуем пункты, попавшие в опрос forEach в разметку (будут видны в браузере)
@@ -78,7 +70,7 @@ todoControl.addEventListener('submit', function (event) {
         completed: false
 
     }
-    // console.log(newToDo);
+
 
     if (headerInput.value === '') {
         alert('Неудача! Введено пустое значение')
@@ -86,8 +78,6 @@ todoControl.addEventListener('submit', function (event) {
         toDoData.push(newToDo)
         headerInput.value = ''
     }
-
-
 
     render()
 
