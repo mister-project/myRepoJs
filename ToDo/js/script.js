@@ -6,13 +6,14 @@ const todoControl = document.querySelector('.todo-control'); //Получаем 
 const headerInput = document.querySelector('.header-input'); //Поле ввода в форму
 const todoList = document.querySelector('.todo-list'); //Первый элемент из списка невыполненных задач
 const todoCompleted = document.querySelector('.todo-completed'); //Первый элемент из списка выполненных задач
-
-
+let localStorageGet = localStorage.getItem("todoList1")
 
 const toDoData = []
 
+
 console.log(typeof (toDoData))
-//console.log(toDoData.li)
+console.log((toDoData))
+console.log(localStorageGet)
 
 
 //функция для отрисовки наших to-do-шек
@@ -48,7 +49,10 @@ const render = function () {
         li.querySelector('.todo-remove').addEventListener('click', function () {
             const itemIndex = toDoData.indexOf(item);
             toDoData.splice(itemIndex, 1);
+
             render();
+            localStorage.setItem("todoList1", JSON.stringify(toDoData))
+
         })
 
     })
@@ -72,6 +76,7 @@ todoControl.addEventListener('submit', function (event) {
         toDoData.push(newToDo)
         headerInput.value = ''
     }
-    render()
 
+    render()
+    localStorage.setItem("todoList1", JSON.stringify(toDoData))
 })
