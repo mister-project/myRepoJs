@@ -7,14 +7,9 @@ const headerInput = document.querySelector('.header-input'); //Поле ввод
 const todoList = document.querySelector('.todo-list'); //Первый элемент из списка невыполненных задач
 const todoCompleted = document.querySelector('.todo-completed'); //Первый элемент из списка выполненных задач
 
-let localStorageGet = localStorage.getItem("todoList1") ? JSON.parse(localStorage.getItem("todoList1")) : [];
-console.log(localStorageGet) //Переменная, содержащая массив задач из localStorage 
+let localStorageGet = localStorage.getItem("todoList1") ? JSON.parse(localStorage.getItem("todoList1")) : []; //Переменная, содержащая массив задач из localStorage 
 
 const toDoData = localStorageGet // Подгрузка списка задач в массив для обработки
-
-
-console.log(typeof (toDoData))
-console.log((toDoData))
 
 
 //функция для отрисовки наших to-do-шек -, перебираем массив, навешиваем HTML верстку на каждый "li" и распределяем по завершенным и нет + публикация на странице
@@ -42,7 +37,7 @@ const render = function () {
             todoList.append(li)
 
         }
-        console.log(todoList.innerHTML)
+
         li.querySelector('.todo-complete').addEventListener('click', function () {
             item.completed = !item.completed
             render()
@@ -71,7 +66,7 @@ todoControl.addEventListener('submit', function (event) {
 
     }
 
-
+    console.log('1')
     if (headerInput.value === '') {
         alert('Неудача! Введено пустое значение')
     } else {
