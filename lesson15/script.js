@@ -1,5 +1,4 @@
 'use strict'
-console.log('lesson15')
 
 const DomElement = function (selector, height, width, bg, fontSize, text) {
     console.log('DomElement запущен')
@@ -16,7 +15,11 @@ DomElement.prototype.crElement = function () {
     console.log('crElement запущен') //Проверка запуска функции
     const firstSymb = this.selector.charAt(0); //Переменная, содержащая первый символ введенного блока
     const restSymb = this.selector.slice(1); //Переменная со всеми символами введенного блока, кроме первого
-    let insContent = document.querySelector('.content'); // переменная для вывода результата на страницу (привязываемся к классу 'content')
+
+    let insContent = document.createElement('p'); // переменная для создания нового элемента
+
+    const bodyInter = document.querySelector('body');
+    console.log(bodyInter);
 
     //Ниже - цикл для выбора значения переменной insContent + добавления разметки (Вставляемый DIV будет классом или ID )
 
@@ -30,6 +33,8 @@ DomElement.prototype.crElement = function () {
     //Ниже дополнительная переменная для выделения DIV из результата цикла и добавления новых стилей CSS
     const insStyle = insContent.querySelector('div') //
 
+    bodyInter.append(insContent);
+
 
     //Ниже задаю остальные свойства блока DIV с использованием CssText
     insStyle.style.cssText = 'height: ' + this.height + 'px; width: ' + this.width + 'px; background: ' + this.bg + '; font-size: ' + this.fontSize + 'px;'
@@ -37,8 +42,9 @@ DomElement.prototype.crElement = function () {
 }
 
 
-
-
-const newObject = new DomElement('#block', 250, 250, 'green', 15, '123')
+const newObject = new DomElement('#block', 150, 150, 'green', 15, 'первый клон')
 newObject.crElement();
 console.log(newObject)
+const newObject1 = new DomElement('.block', 100, 100, 'red', 15, 'Второй клон')
+newObject1.crElement();
+console.log(newObject1)
