@@ -2,7 +2,7 @@
 console.log('lesson15')
 
 const DomElement = function (selector, height, width, bg, fontSize, text) {
-    console.log('DomElement')
+    console.log('DomElement запущен')
     this.selector = selector;
     this.height = height;
     this.width = width;
@@ -13,7 +13,7 @@ const DomElement = function (selector, height, width, bg, fontSize, text) {
 
 DomElement.prototype.crElement = function () {
 
-    console.log('crElement') //Проверка запуска функции
+    console.log('crElement запущен') //Проверка запуска функции
     const firstSymb = this.selector.charAt(0); //Переменная, содержащая первый символ введенного блока
     const restSymb = this.selector.slice(1); //Переменная со всеми символами введенного блока, кроме первого
     let insContent = document.querySelector('.content'); // переменная для вывода результата на страницу (привязываемся к классу 'content')
@@ -39,8 +39,6 @@ DomElement.prototype.crElement = function () {
 
 
 
-const newObject = new DomElement('.block', 50, 50, 'green', 15, '123')
-console.log(newObject)
+const newObject = new DomElement('#block', 250, 250, 'green', 15, '123')
 newObject.crElement();
-
 console.log(newObject)
