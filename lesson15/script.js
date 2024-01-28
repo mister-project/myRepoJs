@@ -21,13 +21,14 @@ console.log('lesson15')
 //   - размер текста fontSize
 // Внутрь созданного блока записывать любой текст. Метод записи может быть любым.
 
-const DomElement = function (selector) {
+const DomElement = function () {
     console.log('DomElement')
-    selector = '.tr';
-    height: 'height';
-    width: 'width';
-    bg: 'bg';
-    FontSize: 'fontSize';
+    const selector = '.tr';
+    const height = 100;
+    const width = 100;
+    const bg = prompt('задайте цвет', 'red');
+    const fontSize = 10;
+    const insText = prompt('введите текст', 'ляля');
 
     const crElement = function () {
         console.log('crElement') //Проверка запуска функции
@@ -38,18 +39,22 @@ const DomElement = function (selector) {
         //Ниже - цикл для выбора значения переменной insContent + добавления разметки (Вставляемый DIV будет классом или ID )
 
         if (firstSymb === '.') {
-            insContent.innerHTML = `<div class="` + restSymb + `">Div с классом ` + restSymb + ` </div>`
+            insContent.innerHTML = `<div class="` + restSymb + `">Ваш текст: "` + insText + `", а DIV с классом ` + restSymb + ` </div>`
 
         } else if (firstSymb === '#') {
-            insContent.innerHTML = `<div id="` + restSymb + `">Div c Идентификатором  ` + restSymb + `</div>`
-
-
+            insContent.innerHTML = `<div id="` + restSymb + `">Ваш текст: ` + insText + `, а DIV  c Идентификатором  ` + restSymb + `</div>`
         }
 
+        //Ниже дополнительная переменная для выделения DIV из результата цикла и добавления новых стилей CSS
+        const insStyle = insContent.querySelector('div') //
 
+
+        //Ниже задаю остальные свойства блока DIV с использованием CssText
+        insStyle.style.cssText = 'height: ' + height + 'px; width: ' + width + 'px; background: ' + bg + '; font-size: ' + fontSize + 'px;'
 
     }
     crElement()
+
 }
 
 DomElement()
