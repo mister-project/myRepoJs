@@ -18,8 +18,7 @@ DomElement.prototype.crElement = function () {
 
     let insContent = document.createElement('p'); // переменная для создания нового элемента
 
-    const bodyInter = document.querySelector('body');
-    console.log(bodyInter);
+    const bodyInter = document.querySelector('body'); //Получение места, куда будут добавляться новые объекты
 
     //Ниже - цикл для выбора значения переменной insContent + добавления разметки (Вставляемый DIV будет классом или ID )
 
@@ -41,10 +40,10 @@ DomElement.prototype.crElement = function () {
 
 }
 
-
+//Создаем новый объект на основании DomElement
 const newObject = new DomElement('#block', 150, 150, 'green', 15, 'первый клон')
-newObject.crElement();
+newObject.crElement(); //Запускаем наследуемый метод создания объекта
 console.log(newObject)
+//Проверка возможности масштабирования объектов
 const newObject1 = new DomElement('.block', 100, 100, 'red', 15, 'Второй клон')
 newObject1.crElement();
-console.log(newObject1)
