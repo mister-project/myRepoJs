@@ -40,10 +40,10 @@ for (let j = 1; j < lengthArr + 1; j++) {
     let cl = "ant" + j;
     console.log(cl);
     const elements1 = document.getElementsByClassName(cl);
-    // elements[i].remove();
-    console.log(elements1);
-    console.log(elements1.length);
-
+    let elemLen = elements1.length;
+    for (let k = 0; k < elemLen; k++) {
+        console.log(elements1[k])
+    }
 
 }
 
