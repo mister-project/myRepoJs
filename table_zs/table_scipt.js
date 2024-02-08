@@ -1,5 +1,5 @@
 'use strict'
-
+console.log('работает скрипт обьединения ячеек во 2-м столбце ')
 
 //считаем количество антенн
 //Шаг1. выводим все записи чтобы найти дубликаты
@@ -9,10 +9,10 @@ console.log(elements);
 //Шаг2. Надо преобразовать nodeList в массив 
 const array = [];
 elements.forEach((y) => {
-    
+
 
     array.push(y.className); // сама публикация новых элементов
-    
+
 });
 
 //Шаг3. Удаляем из массива дубли
@@ -34,26 +34,19 @@ for (let j = 1; j < lengthArr + 1; j++) {
     let elements1 = document.querySelectorAll(`.${cl}`);
     //Определение количества одинаковых ячеек (строк по каждой станции)
     let elemLen = elements1.length;
-    
+
     const array1 = Array.from(elements1);
-   
-   
+
+
     for (let k = 0; k < elemLen; k++) {
         console.log(array1[k]);
-        if(k === 0) {
+        if (k === 0) {
             array1[k].setAttribute('rowspan', `${elemLen}`);
 
         } else {
             array1[k].remove();
         }
-     
+
     }
-   
-} 
 
-    
-
-
-
-
-
+}

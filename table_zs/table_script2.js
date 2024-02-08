@@ -3,14 +3,12 @@
 
 
 let sortedRows = Array.from(table.rows)
-      .slice(1)
-      .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
-      //.sort((rowA, rowB) => rowA.cells[1].innerHTML > rowB.cells[1].innerHTML ? 1 : -1);
+  //Ниже строка для исключения заголовка из расчетов
+  // .slice(1)
+  .sort((rowA, rowB, ) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML && rowA.cells[1].innerHTML > rowB.cells[1].innerHTML ? 1 : -1);
 
-     
-      
 
-    table.tBodies[0].append(...sortedRows);
-    table.tBodies[1].append(...sortedRows);
+console.log(sortedRows)
 
-    
+
+table.tBodies[0].append(...sortedRows);
