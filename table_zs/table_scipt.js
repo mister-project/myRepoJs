@@ -28,16 +28,15 @@ console.log(lengthArr)
 
 //Цикл для перебора станций и создания отдельных коллекций по каждому классу
 
-for (let j = 1; j < lengthArr + 1; j++) {
-    let cl = "ant" + j;
+uniqArray.forEach((cl) => {
+
     console.log(cl);
     let elements1 = document.querySelectorAll(`.${cl}`);
     //Определение количества одинаковых ячеек (строк по каждой станции)
     let elemLen = elements1.length;
 
     const array1 = Array.from(elements1);
-
-
+    //перебор в цикле одинаковых элементов внутри массива array1, добавление атрибутов rowspan, style к нулевому элементу, удаление ненулевых
     for (let k = 0; k < elemLen; k++) {
         console.log(array1[k]);
         if (k === 0) {
@@ -49,4 +48,4 @@ for (let j = 1; j < lengthArr + 1; j++) {
 
     }
 
-}
+})
