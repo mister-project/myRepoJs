@@ -1,63 +1,67 @@
 'use strict'
-
+//Получаем контейнер из HTML и укладываем в переменную
 let content = document.getElementById('content')
 
 
-
-// что сейчас
 const updateClock = () => {
     // let getTime = getTimeRemaining()
+    //Получаем текущую дату и время
     let now = new Date()
-    console.log(`now: ${now}`);
-
+    // console.log(`now: ${now}`);
+    // Получаем день недели
     let today = now.toLocaleString('ru', {
         weekday: 'long'
     });
-
+    //Получаем текущее время
     let nowAmPm = now.toLocaleTimeString("ru"); // 9:17:25 PM
 
+    //Получаем текущий час, день, месяц , год
 
-    // номер дня с начала года
+    let hours = now.getHours(); //час нужен для вычисления номера смены
+    let day = now.getDate();
+    let month = now.getMonth() + 1;
+    let year = now.getFullYear();
 
-    let hours = now.getHours()
 
+    //количество миллисекунд, прошедших с 1 января 1970 года
+    // console.log(`now.getTime(): ${now.getTime()}`);
 
-
-
-    console.log(`now.getTime(): ${now.getTime()}`);
-
-    let days = Math.floor(now / 1000 / 60 / 60 / 24)
-    let balance = days % 4
-    console.log(`balance: ${balance}`);
-    console.log(`hours: ${hours}`);
+    let days = Math.floor(now.getTime() / 1000 / 60 / 60 / 24)
+    let balance = days % 4 //Получение остатка от деления для определения номера смены
+    // console.log(`balance: ${balance}`);
+    // console.log(`hours: ${hours}`);
 
     let smena = 'неопределено';
     if ((balance === 0 && hours > 7) || ((balance) === 1 && hours < 8)) {
-        smena = ' 2 смена'
+        smena = ' смена №2'
     }
     if ((balance === 1 && hours > 7) || ((balance) === 2 && hours < 8)) {
-        smena = ' 3 смена'
+        smena = ' смена №3'
     }
     if ((balance === 2 && hours > 7) || ((balance) === 3 && hours < 8)) {
-        smena = ' 4 смена'
+        smena = ' смена №4'
     }
     if ((balance === 3 && hours > 7) || ((balance) === 0 && hours < 8)) {
-        smena = ' 1 смена'
+        smena = ' смена №1'
     }
 
-    console.log(smena)
-
-
+    // console.log(smena)
 
     // //добавление разрядов
-    content.textContent = `${today} ${nowAmPm}  / ${smena}`
-    // timerMinutes.textContent = ('0' + getTime.minutes).slice(-2);
-    // timerSeconds.textContent = ('0' + getTime.seconds).slice(-2);
+    content.textContent = `${('0' + day).slice(-2)}.${('0' + month).slice(-2)}.${year} / ${today} ${nowAmPm}  / ${smena}`
 
 }
-//Остановка таймера, если дата просрочена
+
+//Определение интервала обновления
 let idInerval = setInterval(() => {
     updateClock()
 }, 1000)
 
-updateClock()
+//одноразовое обновление штампа времени (при остановке часов)
+// updateClock()
+
+//Остановка часов (обновления) через 5 секунд после запуска
+// setTimeout(() => {
+//     clearInterval(idInerval);
+//     alert('stop');
+// }, 5000)
