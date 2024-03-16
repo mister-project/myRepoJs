@@ -21,9 +21,13 @@ const form = document.getElementById('form')
 const username = document.getElementById('username')
 const pass = document.getElementById('password')
 
-const sendData = (url, data) => {
+const sendData = ({
+  url,
+  data = {},
+  method = 'GET'
+}) => {
   return fetch(url, {
-    method: 'POST',
+    method: method,
     body: data,
     headers: {
       'Content-type': 'multipart/form-data',
@@ -36,7 +40,11 @@ form.addEventListener('submit', (e) => {
 
   const data = new FormData(form)
 
-  sendData('https://jsonplaceholder.typicode.com/posts', data)
+  sendData({
+      url: 'https://jsonplaceholder.typicode.com/posts',
+      data: data,
+      method: 'POST'
+    })
 
 
     .then(data => {
