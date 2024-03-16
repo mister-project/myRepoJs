@@ -26,7 +26,7 @@ const sendData = (url, data) => {
     method: 'POST',
     body: data,
     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
+      'Content-type': 'multipart/form-data',
     },
   }).then(response => response.json())
 }
@@ -34,12 +34,9 @@ const sendData = (url, data) => {
 form.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  const user = {
-    login: username.value,
-    password: pass.value
-  }
+  const data = new FormData(form)
 
-  sendData('https://jsonplaceholder.typicode.com/posts', JSON.stringify(user))
+  sendData('https://jsonplaceholder.typicode.com/posts', data)
 
 
     .then(data => {
